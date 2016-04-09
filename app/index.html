@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Kitty Wallet</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="/application.css">
+</head>
+<header>
+	<img src='kittylogo.jpg'/>
+	<h1>KITTY</h1>
+</header>
+<body data-ng-app="kittyApp">
+  <main data-ng-controller="UserController" data-ng-init='getUsers()'>
+		<h3>Users:</h3>
+		<ul>
+			<li data-ng-repeat='user in users'>
+				{{user.name}}
+			</li>
+		</ul>
+
+		<h3>Add A User:</h3>
+		<form data-ng-submit='addUser(user)'>
+      <input data-ng-model='user.name' type='text' placeholder='Add User'/>
+      <input type='submit'/>
+    </form>
+
+		<section data-ng-controller="KittyController" data-ng-init='getAll()'>
+			<h3>Add An Amount:</h3>
+	    <form data-ng-submit='addTally(amount)'>
+				<input
+					name='date'
+					data-ng-model='amount.date'
+					type='date'/>
+	      <input data-ng-model='amount.amount' type='number' placeholder='Add Amount'/>
+				<select name='userSelect'
+					data-ng-options="user as user.name for user in users"
+					data-ng-model='amount.payer'></select>
+	      <input data-ng-model='amount.description' type='text' placeholder='Description'/>
+	      <input type='submit'/>
+	    </form>
+
+			<h3>PAGE 2: DETAILED BREAKDOWN</h3>
+				<table>
+					<tr>
+						<td data-ng-repeat='user in users'>
+							{{user.name}}
+						</td>
+						<td>Payer</td>
+						<td>Description</td>
+					</tr>
+					<tr data-ng-repeat='tally in kitty'>
+						<td data-ng-repeat='user in users'>{{splitzies(tally.amount, matchUser(tally.payer), user, users, kitty)}}</td>
+						<td>{{matchUser(tally.payer)}}</td>
+						<td>{{tally.description}}</td>
+					</tr>
+				</table>
+
+			<h3 id='hello'></h3>
+
+	    <h3>PAGE 4: SUMMARY OF TRANSACTIONS</h3>
+				<table>
+					<tr>
+						<td>Index</td>
+						<td>Date</td>
+						<td>Amount</td>
+						<td>Payer</td>
+						<td>Description</td>
+					</tr>
+				  <tr data-ng-repeat='tally in kitty'>
+						<td>{{$index + 1}}</td>
+						<td>{{convertDate(tally.date)}}</td>
+				    <td>{{tally.amount}}</td>
+						<td>{{matchUser(tally.payer)}}</td>
+				    <td>{{tally.description}}</td>
+				  </tr>
+				</table>
+		</section>
+  </main>
+
+  <script src="bundle.js"></script>
+</body>
+</html>
