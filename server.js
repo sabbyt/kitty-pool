@@ -3,8 +3,8 @@ const app = module.exports = exports = express();
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/kitty_app_dev');
 
-const kittyRouter = require(__dirname + '/app/routes/kitty_routes');
-const userRouter = require(__dirname + '/app/routes/user_routes');
+const kittyRouter = require(__dirname + '/routes/kitty_routes');
+const userRouter = require(__dirname + '/routes/user_routes');
 
 app.use('/api', kittyRouter);
 app.use('/api', userRouter);

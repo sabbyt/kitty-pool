@@ -1,0 +1,41 @@
+<section data-ng-init='getUsers()'>
+  <ul class='nav'>
+    <li><a href='http://localhost:3000/#/home'>HOME</a></li>
+    <li><a href='http://localhost:3000/#/detailed'>HISTORY</a></li>
+  </ul>
+</section>
+
+<section data-ng-controller="KittyController" data-ng-init='getAll()'>
+  <h3>Add An Amount:</h3>
+  <form data-ng-submit='addTally(amount)'>
+    <input
+      name='date'
+      data-ng-model='amount.date'
+      type='date'/>
+    <input data-ng-model='amount.amount' type='number' placeholder='Add Amount'/>
+    <select name='userSelect'
+      data-ng-options="user as user.name for user in users"
+      data-ng-model='amount.payer'></select>
+    <input data-ng-model='amount.description' type='text' placeholder='Description'/>
+    <input type='submit'/>
+  </form>
+
+  <h3 id='sum'></h3>
+
+  <h3>BREAKDOWN</h3>
+    <table>
+      <tr>
+        <td data-ng-repeat='user in users'>
+          {{user.name}}
+        </td>
+        <td>Payer</td>
+        <td>Description</td>
+      </tr>
+      <tr data-ng-repeat='tally in kitty'>
+        <td data-ng-repeat='user in users'>{{splitzies(tally.amount, matchUser(tally.payer), user, users, kitty)}}</td>
+        <td>{{matchUser(tally.payer)}}</td>
+        <td>{{tally.description}}</td>
+      </tr>
+    </table>
+
+</section>

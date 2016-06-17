@@ -1,0 +1,22 @@
+<section>
+  <ul class='nav'>
+    <li><a href='http://localhost:3000/#/home'>HOME</a></li>
+    <li><a href='http://localhost:3000/#/tally'>KITTY POOL</a></li>
+    <li><a href='http://localhost:3000/#/detailed'>HISTORY</a></li>
+  </ul>
+</section>
+
+<section data-ng-init='getUsers()'>
+  <h3>Current Users:</h3>
+  <ul>
+    <li data-ng-repeat='user in users'>
+      {{user.name}}
+    </li>
+  </ul>
+
+  <h3>Add A User:</h3>
+  <form data-ng-submit='addUser(user)'>
+    <input data-ng-model='user.name' type='text' placeholder='Add User'/>
+    <input type='submit'/>
+  </form>
+</section>

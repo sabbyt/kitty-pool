@@ -19,3 +19,10 @@ kittyRouter.post('/total', jsonParser, (req, res) => {
     res.status(200).json(data);
   });
 });
+
+kittyRouter.delete('/tally/:id', jsonParser, (req, res) => {
+  Tally.remove({_id: req.params.id}, (err) => {
+    if (err) return handleDBError(err, res);
+    res.status(200).json({msg: 'Successly deleted donor'});
+  });
+});

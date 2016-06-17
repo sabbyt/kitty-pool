@@ -24,8 +24,7 @@ module.exports = function(app) {
       if ($scope.count === $scope.last) {
         for (var i=0; i<users.length; i++) {
           $scope.send.push($scope.update[i]);
-          document.getElementById('hello').innerHTML +=
-            $scope.send[i].name + ' ' + $scope.send[i].balance + '<br/>';
+          $scope.sum(i);
         }
         console.log($scope.send);
       }
@@ -35,6 +34,11 @@ module.exports = function(app) {
       else {
         return owers;
       }
+    };
+
+    $scope.sum = function(i) {
+      document.getElementById('sum').innerHTML +=
+        $scope.send[i].name + ' ' + $scope.send[i].balance + '<br/>';
     };
 
     $scope.getAll = function() {
@@ -56,6 +60,27 @@ module.exports = function(app) {
         }, (err) => {
           console.log(err);
         });
+    };
+
+    $scope.deleteTally = (tally) => {
+      $http.delete('http://localhost:3000/api/tally/' + tally._id)
+        .then((res) => {
+          console.log('success deleting!');
+          $scope.kitty.splice($scope.kitty.indexOf(tally), 1);
+          console.log($scope.kitty);
+        }, (err) => {
+          console.log(err);
+        });
+    };
+
+    $scope.toggleEdit = (tally) => {
+      if (tally.backup) {
+        var temp = tally.backup;
+        $scope.kitty.splice($scope.kitty.indexOf(tally), 1, temp);
+      } else {
+        tally.backup = angular.copy(tally);
+        tally.editing = true;
+      }
     };
   }]);
 };
