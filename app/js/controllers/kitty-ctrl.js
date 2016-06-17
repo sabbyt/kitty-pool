@@ -82,5 +82,19 @@ module.exports = function(app) {
         tally.editing = true;
       }
     };
+
+    $scope.selfDestructTally = () => {
+      console.log('deleting all');
+      $http.delete('http://localhost:3000/api/selfDestructTally/')
+        .then((res) => {
+          console.log('success deleting!');
+          document.getElementById('tally-destruct').innerHTML +=
+            '<li>SUCCESSFULLY DESTROYED</li>';
+          $scope.kitty = [];
+          console.log($scope.kitty);
+        }, (err) => {
+          console.log(err);
+        });
+    };
   }]);
 };

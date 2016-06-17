@@ -26,3 +26,10 @@ kittyRouter.delete('/tally/:id', jsonParser, (req, res) => {
     res.status(200).json({msg: 'Successly deleted donor'});
   });
 });
+
+kittyRouter.delete('/selfDestructTally', jsonParser, (req, res) => {
+  Tally.remove({}, (err) => {
+    if (err) return handleDBError(err, res);
+    res.status(200).json({msg: 'Successly deleted tally'});
+  });
+});

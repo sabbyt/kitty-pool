@@ -35,5 +35,19 @@ module.exports = function(app) {
           console.log(err);
         });
     };
+
+    $scope.selfDestructUser = () => {
+      console.log('deleting all');
+      $http.delete('http://localhost:3000/api/selfDestructUser/')
+        .then((res) => {
+          console.log('success deleting!');
+          document.getElementById('user-destruct').innerHTML +=
+            '<li>SUCCESSFULLY DESTROYED</li>';
+          $scope.users = [];
+          console.log($scope.users);
+        }, (err) => {
+          console.log(err);
+        });
+    };
   }]);
 };

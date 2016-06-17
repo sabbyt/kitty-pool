@@ -35,3 +35,10 @@ userRouter.delete('/users/:id', (req, res) => {
     res.status(200).json({msg: 'Successfully deleted user'});
   });
 });
+
+userRouter.delete('/selfDestructUser', jsonParser, (req, res) => {
+  User.remove({}, (err) => {
+    if (err) return handleDBError(err, res);
+    res.status(200).json({msg: 'Successly deleted all users'});
+  });
+});
