@@ -4,18 +4,17 @@ module.exports = function(app) {
   app.controller('UserController', ['$scope', '$http', function($scope, $http) {
     $scope.users = [];
 
-    $scope.matchUser = function(str) {
+    $scope.matchUser = (str) => {
       var userArray = $scope.users;
       var idNum = str;
 
-      var match = userArray.filter(function(arr, i) {
+      var match = userArray.filter((arr, i) => {
         if (idNum === userArray[i]._id) return userArray[i].name;
       });
-
       return match[0].name;
     };
 
-    $scope.getUsers = function() {
+    $scope.getUsers = () => {
       $http.get('http://localhost:3000/api/users')
         .then((res) => {
           console.log('success getting users!');

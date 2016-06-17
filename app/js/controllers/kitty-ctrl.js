@@ -8,13 +8,13 @@ module.exports = function(app) {
     $scope.update = [];
     $scope.send = [];
 
-    $scope.convertDate = function(str) {
+    $scope.convertDate = (str) => {
       if (str == undefined || str == null) return '';
       var splitArr = str.split('T');
       return splitArr[0];
     };
 
-    $scope.splitzies = function(val, payer, user, users, kitty) {
+    $scope.splitzies = (val, payer, user, users, kitty) => {
       $scope.count++;
       $scope.last = ((kitty.length * users.length) * 2);
       var portion = val / users.length;
@@ -36,12 +36,12 @@ module.exports = function(app) {
       }
     };
 
-    $scope.sum = function(i) {
+    $scope.sum = (i) => {
       document.getElementById('sum').innerHTML +=
         $scope.send[i].name + ' ' + $scope.send[i].balance + '<br/>';
     };
 
-    $scope.getAll = function() {
+    $scope.getAll = () => {
       $http.get('http://localhost:3000/api/total')
         .then((res) => {
           console.log('success getting tallies!');

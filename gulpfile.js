@@ -56,6 +56,6 @@ gulp.task('sass:dev', () => {
 gulp.task('build:dev', ['webpack:dev', 'html:dev', 'sass:dev', 'img:dev']);
 gulp.task('default', ['build:dev']);
 
-gulp.task('sass:watch', function() {
+gulp.task('sass:watch', () => {
   gulp.watch(__dirname + '/app/**/*.scss', ['sass:dev']);
 });
