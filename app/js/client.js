@@ -9,7 +9,7 @@ require('./controllers/user-ctrl')(kittyApp);
 kittyApp.config(['$routeProvider', (routes) => {
   routes
     .when('/home', {
-      templateUrl: '/views/trip.html'
+      templateUrl: '/views/home.html'
     })
     .when('/', {
       redirectTo: '/home'
@@ -26,14 +26,6 @@ kittyApp.config(['$routeProvider', (routes) => {
       controller: 'UserController',
       templateUrl: '/views/detailed.html'
     })
-    // .when('/newtrip', {
-    //   controller: 'UserController',
-    //   templateUrl: '/views/detailed.html'
-    // })
-    // .when('/previoustrips', {
-    //   controller: 'UserController',
-    //   templateUrl: '/views/detailed.html'
-    // })
     .otherwise({
       templateUrl: '/views/four_oh_four.html'
     });
