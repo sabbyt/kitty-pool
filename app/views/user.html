@@ -7,14 +7,14 @@
 </section>
 
 <section data-ng-init='getUsers()'>
-  <h3>Current Users:</h3>
+  <h3>Current Users</h3>
   <ul>
     <li data-ng-repeat='user in users'>
       {{user.name}}
     </li>
   </ul>
 
-  <h3>Add A User:</h3>
+  <h3>Add A User</h3>
   <form data-ng-submit='addUser(user)'>
     <input data-ng-model='user.name' type='text' placeholder='Add User'/>
     <input type='submit'/>

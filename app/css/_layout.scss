@@ -2,6 +2,10 @@ h3 {
   font-size: 1.6em;
 }
 
+h4 {
+  font-size: 1em;
+}
+
 img {
   padding: 20px;
   margin: 10px;
@@ -21,8 +25,12 @@ li, form {
 
 .nav {
   text-align: center;
+  font-size: 1.4em;
   li {
     display: inline;
     padding: 5px;
+    a {
+      text-decoration: none;
+    }
   }
 }
